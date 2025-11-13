@@ -3,7 +3,7 @@ public class Certification {
     Cours cours;
     Etudiant etudiant;
     String dateObtention;
-    public Certification(){}
+
     public Certification(int certId, Cours cours, Etudiant etudiant) {
         this.certId = certId;
         this.cours = cours;
@@ -27,16 +27,8 @@ public class Certification {
         }
     }
 
-    public void genererCertification(int studentID, int courseID) {
-        Etudiant etudiantObj = Utilities.getStudentById(studentID);
-        Cours coursObj = Utilities.getCoursById(courseID);
-        if (etudiantObj == null || coursObj == null) {
-            System.out.println("Something went wrong!!! Try again:");
-        } else {
-            new Certification(coursObj.courseId, coursObj, etudiantObj);
-            afficherCertification();
-        }
-
+    public void genererCertification() {
+        afficherCertification();
     }
 
 }

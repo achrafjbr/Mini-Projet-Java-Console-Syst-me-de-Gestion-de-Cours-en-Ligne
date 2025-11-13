@@ -15,7 +15,8 @@ public class Menu {
         System.out.println("8. Quitter");
         System.out.print("Entrez votre choix : ");
         // if (choix < 1 || choix > 7) {choix = scanner.nextInt();}
-        return scanner.nextInt();
+        int choix = scanner.nextInt();
+        return choix;
     }
 
     public static void start() {
@@ -77,7 +78,7 @@ public class Menu {
                 } else {
                     System.out.println("Entrez l’ID de cours :");
                     int coursIDForInstructor = scanner.nextInt();
-                    instructeur.cours = new Etudiant().getCoursById(coursIDForInstructor);
+                    instructeur.cours = Utilities.getCoursById(coursIDForInstructor);
                     new Cours().assignerInstructeur(instructeur);
                 }
 
@@ -92,7 +93,12 @@ public class Menu {
                 int studentIDe = scanner.nextInt();
                 System.out.println("Entrez l’ID du cours :");
                 int coursIDe = scanner.nextInt();
-                new Certification().genererCertification(studentIDe,coursIDe);
+                Etudiant etudiant = Utilities.getStudentById(studentIDe);
+                Cours cours = Utilities.getCoursById(coursIDe);
+                if (etudiant == null || cours == null) {
+                    System.out.println("Something went wrong!!! Try again:");
+                }
+                new Certification(studentIDe, cours, etudiant).genererCertification();
                 break;
         }
     }

@@ -24,8 +24,7 @@ public class Etudiant {
     }
 
     public void inscrire(int coursId, int studentId) {
-        Scanner scanner = new Scanner(System.in);
-        Etudiant etudiant = getStudentById(studentId);
+        Etudiant etudiant = Utilities.getStudentById(studentId);
         if (etudiant == null) {
             System.out.println("This ID not found");
         } else {
@@ -34,10 +33,11 @@ public class Etudiant {
             } else {
                 System.out.println("Il faut acheter le cours, aprés tu peut le prendre");
 
-                System.out.println("Est ce que vous voulez acheter le Course : Tap (1) si non Tap(0) ");
+                System.out.println("Est ce que vous voulez acheter le Course : Taper (1) si non Taper (0) ");
+                Scanner scanner = new Scanner(System.in);
                 int response = scanner.nextInt();
                 if (response == 1) {
-                    Cours cours = getCoursById(coursId);
+                    Cours cours = Utilities.getCoursById(coursId);
                     if (cours == null) {
                         System.out.println("This ID not found");
                     }
@@ -46,25 +46,7 @@ public class Etudiant {
 
             }
         }
-        scanner.close();
-    }
 
-    public Etudiant getStudentById(int studentId) {
-        for (Etudiant etudiant : Cours.etudiants) {
-            if (etudiant.studentId == studentId) {
-                return etudiant;
-            }
-        }
-        return null;
-    }
-
-    public Cours getCoursById(int coursId) {
-        for (Cours cours : courses) {
-            if (cours.courseId == coursId) {
-                return cours;
-            }
-        }
-        return null;
     }
 
     public void afficherCours() {
